@@ -10,11 +10,10 @@ import sys
 import json
 import zmq
 import platform
+import threading
 
-from threading import Thread
 
-
-class Interface:
+class Interface( threading.Thread ):
     # create
     def __init__( self ):
         self.port = 24001
@@ -28,12 +27,16 @@ class Interface:
         self.router = {}
 
         # thread processing
-        self.thread = None
+        threading.Thread.__init__ ( self )
 
     # task processing
-    def _tasking( self ):
+    def run( self ):
         # infinite loop
         while( True ):
+            # stop thread
+            if( self.socket is None ):
+                break
+            
             # query processing
             if( self.socket.poll( 0 ) ):
                 query = json.loads( self.socket.recv() )
@@ -52,18 +55,8 @@ class Interface:
 
                     # execute handler
                     reply = fn( args, ctx )
-                          
+                        
                     self.socket.send_json( dict( _p = query[ '_p' ], _id = query[ '_id' ], data = reply ) )
-
-            time.sleep( 0.001 )
-    
-    # reply method
-    def reply( self, path ):
-        # wrap function
-        def replyProxy( data ):
-            self.socket.send_json( dict( path = path, data = data ) )
-
-        return replyProxy
 
     # routing queries
     def handle( self, path, handle, context = {} ):
@@ -71,16 +64,13 @@ class Interface:
  
     # launch interface
     def listen( self, port = 24001 ):
-        
-        # start thread to listen
-        if( self.thread is None ):
-            self.thread = Thread( target = self._tasking, args = ( ), daemon = True )
-            self.thread.start()
-
         self.port = int( port )
         self.socket_address = 'tcp://127.0.0.1:%d' % self.port
         self.socket.bind( self.socket_address )
 
-    # stop listening on URL
+        self.start()
+
+    # stop listening on port
     def end( self ):
-        pass
+        self.socket.close()
+        self.socket = None
