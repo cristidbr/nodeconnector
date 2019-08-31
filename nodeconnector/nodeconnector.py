@@ -5,13 +5,9 @@ Python connector module for Node.JS applications
 __version__ = '0.9.0'
 
 
-import time
-import sys
 import json
 import zmq
-import platform
 import threading
-
 
 class Interface( threading.Thread ):
     # create
