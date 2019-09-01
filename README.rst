@@ -1,4 +1,4 @@
-NodeConnector
+nodeconnector 
 #############
 
 Python connector module for Node.JS applications. This packages allows Python functions to be called and 

@@ -1,12 +1,26 @@
-from setuptools import setup
+"""Setuptools entry point."""
+import codecs
+import os
 
-def readme():
-    with open('README.rst') as f:
-        return f.read()
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
+dirname = os.path.dirname(__file__)
+readme_filename = os.path.join(dirname, 'README.rst')
+
+description = 'Python connector module for Node.JS applications'
+long_description = description
+if os.path.exists(readme_filename):
+    readme_content = codecs.open(readme_filename, encoding='utf-8').read()
+    long_description = readme_content
 
 setup(name='nodeconnector',
-      version='1.0.0',
-      description='Python connector module for Node.JS applications',
+      version='1.0.3',
+      description=description,
+      long_description=long_description,
+      long_description_content_type='text/x-rst',
       url='https://github.com/cristidbr/nodeconnector',
       author='Cristian Dobre',
       author_email='cristian.dobre@hbfsrobotics.com',
