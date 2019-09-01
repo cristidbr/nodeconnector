@@ -23,8 +23,8 @@ Usage
 =====
 
 A simple minimal API interface can be created using the following example.
-Note that handle/resolver functions are executed in a separate thread. Context 
-information can be set when calling ``nodeconnector.Interface.handle( 'query_type', resolve_function, [ ctx ] )``.
+Note that handle/resolver functions are executed in a separate thread. 
+Context information can be using ``nodeconnector.Interface.handle( 'query_type', resolve_function, [ ctx ] )``.
 
 This object will be passed to all ``resolve_function`` calls and can be used to store information between queries.
 
