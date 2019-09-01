@@ -10,8 +10,8 @@ Installation
 ============
 
 Install using pip
-.. code-block:: bash
-    $ pip install nodeconnector 
+.. code:: sh
+    pip install nodeconnector 
 
 Python version
 --------------
@@ -27,7 +27,7 @@ information can be set when calling ``nodeconnector.Interface.handle( 'query_typ
 
 This object will be passed to all ``resolve_function`` calls and can be used to store information between queries.
 
-.. code-block:: python
+.. code:: python
     # minimal.py
     import sys
     import time
