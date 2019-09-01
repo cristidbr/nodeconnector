@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='nodeconnector',
-      version='0.9.0',
+      version='1.0.0',
       description='Python connector module for Node.JS applications',
       url='https://github.com/cristidbr/nodeconnector',
       author='Cristian Dobre',
