@@ -17,7 +17,7 @@ if os.path.exists(readme_filename):
     long_description = readme_content
 
 setup(name='nodeconnector',
-      version='1.0.3',
+      version='1.0.4',
       description=description,
       long_description=long_description,
       long_description_content_type='text/x-rst',

@@ -2,7 +2,7 @@
 Python connector module for Node.JS applications
 
 """
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 
 import json
 import zmq
@@ -31,7 +31,7 @@ class Interface(threading.Thread):
         # infinite loop
         while(True):
             # query processing
-            query = json.loads(self.socket.recv())
+            query = json.loads(self.socket.recv_string())
 
             # return registered handlers
             if(query['_p'] == '__pyroutes'):
