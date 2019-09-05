@@ -2,7 +2,7 @@
 Python connector module for Node.JS applications
 
 """
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 
 import json
 import zmq
